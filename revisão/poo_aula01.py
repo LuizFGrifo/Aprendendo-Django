@@ -1,4 +1,4 @@
-class Celular:
+class Celular():
     marca = 'Nokia'
     modelo = 'Tijolão'
     cor = 'Azul'

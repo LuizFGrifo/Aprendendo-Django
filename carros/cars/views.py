@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from cars.models import Car
 
-# Create your views here.
+def cars_views(request):
+    cars = Car.objects.all() # Seleciona todos os objetos da tabela carros
+    
+    return render(
+        request, 
+        'cars.html', 
+        {'cars': cars}
+        )

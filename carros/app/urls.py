@@ -13,5 +13,5 @@ from cars.views import  cars_views
 # Local onde disponibilizamos as rotas
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cars/', cars_views),
+    path('cars/', cars_views, name='cars_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

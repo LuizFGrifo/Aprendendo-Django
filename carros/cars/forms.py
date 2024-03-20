@@ -5,6 +5,8 @@ do new_car.html
 from django import forms
 from cars.models import Brand, Car
 
+
+# Forma mais verbosa de criar formularios
 class CarForm(forms.Form):
     model = forms.CharField(max_length=200)
     brand = forms.ModelChoiceField(Brand.objects.all()) # Lista todos os objetos da tabela Brand
@@ -26,3 +28,10 @@ class CarForm(forms.Form):
         )
         car.save()
         return car
+    
+# Forma menos verbosa e mais facil de fazer
+class CarModelForm(forms.ModelForm):
+    class Meta: # Sobrescreve a class meta
+        model = Car # Indica que o model é da tabela Car
+        fields = '__all__' # Puxa todos os campos da tabela Car
+

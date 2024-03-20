@@ -5,7 +5,6 @@ do new_car.html
 from django import forms
 from cars.models import Brand, Car
 
-
 # Forma mais verbosa de criar formularios
 class CarForm(forms.Form):
     model = forms.CharField(max_length=200)
@@ -35,3 +34,15 @@ class CarModelForm(forms.ModelForm):
         model = Car # Indica que o model é da tabela Car
         fields = '__all__' # Puxa todos os campos da tabela Car
 
+
+    def clean_value(self): # Forma do Django entender que é um campo de validação, colocar clean_...
+        value = self.cleaned_data.get('value') # Pega o valor digitado do formulario value
+        if value < 20000:
+            self.add_error('value', 'Valor mínimo do carro deve ser de R$20.000')
+        return value
+    
+    def clean_factory_year(self):
+        factory_year = self.cleaned_data.get('factory_year')
+        if factory_year < 1900:
+            self.add_error('factory_year', 'Ano ívalido, insira um modelo de fabircação posterior a 1900')
+        return factory_year
